@@ -1,0 +1,66 @@
+{
+	"name": "DataSet_01",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LinkService_01",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "employe.csv",
+				"folderPath": "Apple Sales/Online/2025/march/29",
+				"fileSystem": "raw"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "satisfactoryLevel",
+				"type": "String"
+			},
+			{
+				"name": "lastEvaluation",
+				"type": "String"
+			},
+			{
+				"name": "numberOfProjects",
+				"type": "String"
+			},
+			{
+				"name": "avgMonthlyHours",
+				"type": "String"
+			},
+			{
+				"name": "timeSpent.company",
+				"type": "String"
+			},
+			{
+				"name": "workAccident",
+				"type": "String"
+			},
+			{
+				"name": "left",
+				"type": "String"
+			},
+			{
+				"name": "promotionInLast5years",
+				"type": "String"
+			},
+			{
+				"name": "dept",
+				"type": "String"
+			},
+			{
+				"name": "salary",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
