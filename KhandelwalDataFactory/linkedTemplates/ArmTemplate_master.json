@@ -1,0 +1,112 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "KhandelwalDataFactory"
+		},
+		"LinkService_01_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LinkService_01'"
+		},
+		"LinkService_sourceDB_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LinkService_sourceDB'"
+		},
+		"LinkService_targetDB_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LinkService_targetDB'"
+		},
+		"LinkService_01_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://khandelwalstorage01.dfs.core.windows.net/"
+		},
+		"LinkService_sourceDB_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "khandelwalserver.database.windows.net"
+		},
+		"LinkService_sourceDB_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "khandelwalDB"
+		},
+		"LinkService_sourceDB_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "sqladmin"
+		},
+		"LinkService_targetDB_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "khandelwalserver.database.windows.net"
+		},
+		"LinkService_targetDB_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "khandelwalserver02"
+		},
+		"LinkService_targetDB_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "sqladmin"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "KhandelwalDataFactory_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"LinkService_01_accountKey": {
+						"value": "[parameters('LinkService_01_accountKey')]"
+					},
+					"LinkService_sourceDB_password": {
+						"value": "[parameters('LinkService_sourceDB_password')]"
+					},
+					"LinkService_targetDB_password": {
+						"value": "[parameters('LinkService_targetDB_password')]"
+					},
+					"LinkService_01_properties_typeProperties_url": {
+						"value": "[parameters('LinkService_01_properties_typeProperties_url')]"
+					},
+					"LinkService_sourceDB_properties_typeProperties_server": {
+						"value": "[parameters('LinkService_sourceDB_properties_typeProperties_server')]"
+					},
+					"LinkService_sourceDB_properties_typeProperties_database": {
+						"value": "[parameters('LinkService_sourceDB_properties_typeProperties_database')]"
+					},
+					"LinkService_sourceDB_properties_typeProperties_userName": {
+						"value": "[parameters('LinkService_sourceDB_properties_typeProperties_userName')]"
+					},
+					"LinkService_targetDB_properties_typeProperties_server": {
+						"value": "[parameters('LinkService_targetDB_properties_typeProperties_server')]"
+					},
+					"LinkService_targetDB_properties_typeProperties_database": {
+						"value": "[parameters('LinkService_targetDB_properties_typeProperties_database')]"
+					},
+					"LinkService_targetDB_properties_typeProperties_userName": {
+						"value": "[parameters('LinkService_targetDB_properties_typeProperties_userName')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}
